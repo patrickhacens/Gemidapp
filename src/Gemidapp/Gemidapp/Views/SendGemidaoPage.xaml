@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gemidapp.Views.SendGemidaoPage"
+             Title="{Binding Title}"
+             IsBusy="{Binding IsBusy}">
+    <StackLayout Padding="30">
+
+        <StackLayout VerticalOptions="FillAndExpand"
+                     BackgroundColor="{StaticResource Accent}"
+                     Margin="-30, -30, -30, 30">
+            <Label Text="GemidApp" 
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="Center"
+                   StyleClass="Header"
+                   FontSize="60"/>
+        </StackLayout>
+
+        <Label Text="De" HorizontalOptions="Start" VerticalOptions="Center"/>
+
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+
+            <Entry Text="{Binding From}"
+                   HorizontalOptions="FillAndExpand"/>
+            <Button Text="Carregar" HorizontalOptions="End"/>
+
+        </StackLayout>
+
+        <Label Text="Para" HorizontalOptions="Start" VerticalOptions="Center"/>
+
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+
+            <Entry Text="{Binding To}"
+                   HorizontalOptions="FillAndExpand"/>
+            <Button Text="Carregar" HorizontalOptions="End"/>
+
+        </StackLayout>
+
+
+        <Button Text="Enviar Gemidão" 
+                VerticalOptions="Center"
+                Command="{Binding EnviarGemidao}"/>
+
+        <BoxView VerticalOptions="CenterAndExpand"/>
+
+    </StackLayout>
+</ContentPage>

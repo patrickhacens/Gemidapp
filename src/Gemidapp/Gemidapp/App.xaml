@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Gemidapp.App">
+  <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#651fff</Color>
+            <Color x:Key="PrimaryDark">#6200ea</Color>
+            <Color x:Key="Accent">#7c4dff</Color>
+            <Color x:Key="LightBackgroundColor">#ede7f6</Color>
+            <Color x:Key="DarkBackgroundColor">#311b92</Color>
+            <Color x:Key="DarkTextColor">#b39ddb</Color>
+            <Color x:Key="LightTextColor">#FFF</Color>
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}"/>
+                <Setter Property="TextColor" Value="{StaticResource LightTextColor}"/>
+            </Style>
+
+            <Style TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="{StaticResource LightBackgroundColor}"/>
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkTextColor}"/>
+            </Style>
+
+            <Style TargetType="Label" Class="Header">
+                <Setter Property="TextColor" Value="{StaticResource LightTextColor}"/>
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource DarkTextColor}"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
