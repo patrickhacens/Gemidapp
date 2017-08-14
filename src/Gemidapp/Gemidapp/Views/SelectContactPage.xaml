@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gemidapp.Views.SelectContactPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Select Contact"/>
+    </ContentPage.ToolbarItems>
+    <ListView ItemsSource="{Binding Contacts}"
+              ItemTapped="Handle_ItemTapped"
+              RefreshCommand="{Binding LoadItemsCommand}"
+              IsPullToRefreshEnabled="True"
+              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+              HasUnevenRows="True"
+              CachingStrategy="RecycleElement">
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout>
+                        <Label Text="{Binding Name}" 
+                               Style="{DynamicResource ListItemTextStyle}" />
+                        <Label Text="{Binding Number}" 
+                               Style="{DynamicResource ListItemDetailTextStyle}"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+    </ListView>
+</ContentPage>

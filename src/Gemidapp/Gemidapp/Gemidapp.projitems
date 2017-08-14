@@ -16,8 +16,11 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\BaseDataObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Contact.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IContactService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\TotalVoiceService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectContactViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SendGemidaoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MockDataStore.cs" />
@@ -36,6 +39,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ItemDetailPage.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ItemsPage.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\NewItemPage.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SelectContactPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\SendGemidaoPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -60,6 +66,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SendGemidaoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SelectContactPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
