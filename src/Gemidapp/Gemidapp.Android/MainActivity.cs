@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Gemidapp.Droid.Services;
 using PerpetualEngine.Storage;
 
 namespace Gemidapp.Droid
@@ -17,6 +18,7 @@ namespace Gemidapp.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             SimpleStorage.SetContext(ApplicationContext);
+            ContactService.SetContext(ApplicationContext);
 
             LoadApplication(new App());
         }
