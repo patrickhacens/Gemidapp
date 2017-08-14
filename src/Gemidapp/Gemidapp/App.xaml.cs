@@ -21,7 +21,8 @@ namespace Gemidapp
             Current.MainPage = new MasterDetailPage()
             {
                 Master = new Drawer(),
-                Detail = new SendGemidaoPage()
+                Detail = new NavigationPage(new SendGemidaoPage())
+                //Detail = new Page()
             };
         }
 	}

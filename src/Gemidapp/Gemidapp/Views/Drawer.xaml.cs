@@ -41,10 +41,10 @@ namespace Gemidapp.Views
                 switch (name)
                 {
                     case "Enviar Gemidão":
-                        this.MasterDetailPage.Detail = new SendGemidaoPage();
+                        this.MasterDetailPage.Detail = new NavigationPage(new SendGemidaoPage());
                         break;
                     default:
-                        this.MasterDetailPage.Detail = new TokenPage();
+                        this.MasterDetailPage.Detail = new NavigationPage(new TokenPage());
                         break;
                 }
             }
