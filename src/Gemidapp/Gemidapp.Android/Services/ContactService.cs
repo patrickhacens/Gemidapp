@@ -29,76 +29,53 @@ namespace Gemidapp.Droid.Services
 
         public IReadOnlyList<Contact> GetContacts()
         {
-            #region previous
-            //List<Contact> result;
-            //ContentResolver cr = context.ContentResolver;
-            ////using (ICursor cur = cr.Query(ContactsContract.Contacts.ContentUri, null, null, null, null))
-            ////{
-            ////ICursor cur = cr.Query(Contacts.People.ContentUri, null, null, null, null);
-            //ICursor cur = cr.Query(ContactsContract.Contacts.ContentUri, null, null, null, null);
-            //result = new List<Contact>(cur.Count);
-            //if (cur.Count > 0)
-            //{
-            //    while (cur.MoveToNext())
-            //    {
-            //        String id = cur.GetString(cur.GetColumnIndex(ContactsContract.Contacts.Entity.InterfaceConsts.Id));
-            //        String name = cur.GetString(cur.GetColumnIndex(ContactsContract.Contacts.Entity.InterfaceConsts.DisplayName));
-            //        //int number = cur.GetInt(cur.GetColumnIndex(Contacts.People.InterfaceConsts.));
-            //        if (cur.GetInt(cur.GetColumnIndex(Contacts.People.InterfaceConsts.Number)) > 0)
-            //        {
-            //            using (ICursor pCur = cr.Query(ContactsContract.CommonDataKinds.Phone.ContentUri, null, ContactsContract.CommonDataKinds.Phone.InterfaceConsts.ContactId + " = ?", new String[] { id }, null))
-            //            {
-            //                while (pCur.MoveToNext())
-            //                {
-            //                    String phoneNo = pCur.GetString(pCur.GetColumnIndex(ContactsContract.CommonDataKinds.Phone.Number));
-
-            //                    result.Add(new Contact
-            //                    {
-            //                        Name = name,
-            //                        Number = phoneNo
-            //                    });
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-            ////}
-            //cur.Close();
-            //return result; 
-            #endregion
-
-
-            using (var loader = new CursorLoader(context, ContactsContract.Contacts.ContentUri, null, $"{ContactsContract.Contacts.InterfaceConsts.HasPhoneNumber} > 0", null, ContactsContract.Contacts.Entity.InterfaceConsts.DisplayName))
-            using (var cursor = (ICursor)loader.LoadInBackground())
+            var phoneContacts = new List<Contact>();
+            using (var loader = new CursorLoader(context, ContactsContract.CommonDataKinds.Phone.ContentUri, null, null, null, null))
+            using (var phones = (ICursor)loader.LoadInBackground())
             {
-                List<Contact> result = new List<Contact>(cursor.Count);
-                if (cursor.MoveToFirst())
+                if (phones != null)
                 {
-                    do
+                    while (phones.MoveToNext())
                     {
-                        using (var phoneLoader = new CursorLoader(context,
-                                            ContactsContract.CommonDataKinds.Phone.ContentUri,
-                                            null,
-                                            $"{ContactsContract.CommonDataKinds.Phone.InterfaceConsts.ContactId} = ?",
-                                            new string[] { cursor.GetString(cursor.GetColumnIndex(ContactsContract.Contacts.Entity.InterfaceConsts.Id)) },
-                                            null))
-                        using (var phoneCursor = (ICursor)phoneLoader.LoadInBackground())
-                            if (phoneCursor != null && phoneCursor.MoveToFirst())
-                                result.Add(new Contact
-                                {
-                                    Name = cursor.GetString(cursor.GetColumnIndex(ContactsContract.Contacts.Entity.InterfaceConsts.DisplayName)),
-                                    Number = phoneCursor.GetString(phoneCursor.GetColumnIndex(ContactsContract.CommonDataKinds.Phone.NormalizedNumber)),
-                                });
-                    } while (cursor.MoveToNext());
+                        try
+                        {
+                            phoneContacts.Add(new Contact
+                            {
+                                Name = phones.GetString(phones.GetColumnIndex(ContactsContract.Contacts.InterfaceConsts.DisplayName)),
+                                Number = phones.GetString(phones.GetColumnIndex(ContactsContract.CommonDataKinds.Phone.Number)),
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            //something wrong with one contact, may be display name is completely empty, decide what to do
+                        }
+                    }
+                    //phones.Close(); //not really neccessary, we have "using" above
                 }
-
-                return result;
+                else
+                {
+                    throw new Exception("Phone cursor is null at lowlevel");
+                }
             }
+
+            return phoneContacts;
         }
 
-        public Task<IReadOnlyList<Contact>> GetContactsAsync()
+        //public Task<IReadOnlyList<Contact>> GetContactsAsync()
+        //{
+        //    throw new NotImplementedException();
+        //}
+        public async Task<IReadOnlyList<Contact>> GetContactsAsync()
         {
             throw new NotImplementedException();
+        }
+
+
+        public class PersonContact
+        {
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string PhoneNumber { get; set; }
         }
     }
 }

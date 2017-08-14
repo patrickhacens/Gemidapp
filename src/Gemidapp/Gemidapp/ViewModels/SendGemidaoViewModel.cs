@@ -12,9 +12,11 @@ namespace Gemidapp.ViewModels
     {
         public ICommand EnviarGemidao { get; set; }
 
-        public string From { get; set; }
+        private string _from;
+        public string From { get => _from; set => SetProperty(ref _from, value); }
 
-        public string To { get; set; }
+        private string _to;
+        public string To { get => _to; set => SetProperty(ref _to, value); }
 
         SimpleStorage storage;
         public SendGemidaoViewModel()

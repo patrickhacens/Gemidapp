@@ -16,17 +16,18 @@ namespace Gemidapp.Views
     {
         private ViewModels.SelectContactViewModel vm;
 
-        private Contact _selectedContact;
-        public Contact SelectedContact { get
-            { return _selectedContact; } set
-            {
-                if(_selectedContact != value)
-                    _selectedContact = value;
-                this.OnPropertyChanged();
-            }
-        }
+        //private Contact _selectedContact;
+        //public Contact SelectedContact { get
+        //    { return _selectedContact; } set
+        //    {
+        //        if(_selectedContact != value)
+        //            _selectedContact = value;
+        //        this.OnPropertyChanged();
+        //    }
+        //}
 
-        
+        public Contact SelectedContact { get; set; }
+
 
         public SelectContactPage()
         {
@@ -42,13 +43,6 @@ namespace Gemidapp.Views
                 this.SelectedContact = contact;
                 await this.Navigation.PopAsync();
             }
-            //if (e.SelectedItem == null)
-            //    return;
-
-            //await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-
-            ////Deselect Item
-            //((ListView)sender).SelectedItem = null;
         }
 
         protected override void OnAppearing()

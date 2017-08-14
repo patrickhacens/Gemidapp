@@ -36,6 +36,7 @@ namespace Gemidapp.ViewModels
             try
             {
                 Contacts.Clear();
+                //LoadMock();
                 Contacts.AddRange(contactService.GetContacts());
             }
             catch (Exception ex)
@@ -53,6 +54,43 @@ namespace Gemidapp.ViewModels
                 IsBusy = false;
             }
 
+        }
+
+        private void LoadMock()
+        {
+            Contacts.AddRange(new Contact[]
+            {
+                new Contact
+                {
+                    Name = "Patrick Ens",
+                    Number = "11 98489 4773"
+                },
+                new Contact
+                {
+                    Name = "Patrick Ens",
+                    Number = "11 98489 4773"
+                },
+                new Contact
+                {
+                    Name = "Patrick Ens",
+                    Number = "11 98489 4773"
+                },
+                new Contact
+                {
+                    Name = "Patrick Ens",
+                    Number = "11 98489 4773"
+                },
+                new Contact
+                {
+                    Name = "Patrick Ens",
+                    Number = "11 98489 4773"
+                },
+                new Contact
+                {
+                    Name = "Patrick Ens",
+                    Number = "11 98489 4773"
+                },
+            });
         }
     }
 }

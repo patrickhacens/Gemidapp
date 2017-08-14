@@ -22,19 +22,16 @@ namespace Gemidapp.Views
 
         private async void FromLoadButton_Clicked(object sender, EventArgs e)
         {
-            vm.From = (await GetContactAsked()).Replace("+55", "");
+            SelectContactPage contactPage = new SelectContactPage();
+            await this.Navigation.PushAsync(contactPage);
+            contactPage.Disappearing += (s, _) => vm.From = contactPage.SelectedContact?.Number?.Replace("+55", "");
         }
 
         private async void ToLoadButton_Clicked(object sender, EventArgs e)
         {
-            vm.To = (await GetContactAsked()).Replace("+55", "");
-        }
-
-        private async Task<string> GetContactAsked()
-        {
             SelectContactPage contactPage = new SelectContactPage();
             await this.Navigation.PushAsync(contactPage);
-            return contactPage.SelectedContact.Number;
+            contactPage.Disappearing += (s, _) => vm.To = contactPage.SelectedContact?.Number?.Replace("+55", "");
         }
     }
 }
