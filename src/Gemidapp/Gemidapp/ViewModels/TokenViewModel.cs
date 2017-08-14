@@ -9,6 +9,8 @@ namespace Gemidapp.ViewModels
 {
     class TokenViewModel : BaseViewModel
     {
+        public ICommand OpenWebBrowser { get; }
+
         SimpleStorage storage;
         public TokenViewModel()
         {
@@ -23,8 +25,7 @@ namespace Gemidapp.ViewModels
         string _token;
         public string Token
         {
-            get
-            { return _token; }
+            get => _token;
             set
             {
                 if (_token != value) storage.Put(nameof(Token), value);
@@ -32,6 +33,5 @@ namespace Gemidapp.ViewModels
             }
         }
         
-        public ICommand OpenWebBrowser { get; }
     }
 }
